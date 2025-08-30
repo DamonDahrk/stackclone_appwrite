@@ -1,0 +1,1 @@
+Appwrite is an open-source backend-as-a-service (BaaS) platform designed to simplify backend development for web, mobile, and Flutter applications by providing developers with a suite of ready-to-use APIs
