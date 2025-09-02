@@ -30,7 +30,38 @@ interface definitions
 store state and methods
 rehydration
 
-Zustand optimizes fine-grained re-rendering so components only re-render when the specific parts of the store they use change. useEffect with useState can lead to more frequent or unnecessary re-renders if not carefully optimized.
+Zustand optimizes fine-grained re-rendering so components
+ only re-render when the specific parts of the store 
+ they use change. useEffect with useState can lead to
+  more frequent or unnecessary re-renders if not carefully
+   optimized.
+
+
+ create<IAuthStore>(): Initializes a Zustand store with TypeScript interface IAuthStore for type safety.
+
+The store state includes:
+
+session, jwt, user: to store the current user session, JSON Web Token, and user data.
+
+hydrated: boolean flag to indicate if persisted state has been restored from storage.
+
+State-modifying functions:
+
+setHydrated(): Sets the hydrated flag true after the state is rehydrated from persistence.
+
+verifySession(): Asynchronously checks if a user session exists by calling account.getSession("current"), then updates the state.
+
+login(email, password): Attempts login by creating an email/password session, fetching user info and JWT in parallel, and sets state. Also ensures user reputation 
+is initialized if missing.
+
+createAccount(name, email, password): Creates a new user account and returns success or failure info.
+
+logout(): Deletes all sessions and clears auth state.
+
+Error handling logs errors and returns structured failure results with Appwrite exception info if applicable.
+
+The store state is persisted with key 'auth', and a hook onRehydrateStorage marks the store as hydrated once state is restored from persisted storage.
+
 src -> models -> client -> config.ts:  
 
 
