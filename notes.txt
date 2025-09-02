@@ -1,2 +1,82 @@
 Appwrite is an open-source backend-as-a-service (BaaS) platform designed to simplify backend development for web, mobile, and Flutter applications by providing developers with a suite of ready-to-use APIs
 add
+
+Zustand is a small, fast, and scalable state management 
+library for React applications. It provides a simple API 
+based on hooks and does not require boilerplate or provider
+ components like some other state libraries. 
+
+Immer middleware helps keep the react state persistent 
+and allows you to use the same state across multiple 
+components without worrying about the state being 
+overwritten or lost. 
+
+(ur always mutating the new state and not the existing state)
+
+
+onRehydrateStorage ->  listener function provided in the persist 
+middleware configuration that gets called when the
+ state is rehydrated 
+
+brings the state from local storage
+to our application (this is what hydration means in zustand 
+lingo)
+
+import 
+interface definitions
+
+||zustand store immer persist||
+
+store state and methods
+rehydration
+
+Zustand optimizes fine-grained re-rendering so components only re-render when the specific parts of the store they use change. useEffect with useState can lead to more frequent or unnecessary re-renders if not carefully optimized.
+src -> models -> client -> config.ts:  
+
+
+name.ts
+
+
+server-> config.ts
+
+
+question.collection.ts ->
+
+
+//indexes if it doesnt work do it via web only
+//watch the video still
+
+answer.collection.ts ->
+comment collection.ts
+
+
+//storage.collection.ts
+
+
+
+//vote.collection.ts :
+
+
+//dbSetup.ts
+
+---DATA MODELLING END ---
+
+
+- ZUSTAND -
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
