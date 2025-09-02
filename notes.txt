@@ -64,6 +64,12 @@ The store state is persisted with key 'auth', and a hook onRehydrateStorage mark
 
 src -> models -> client -> config.ts:  
 
+//
+
+<>
+
+these things are typescript specific 
+
 
 name.ts
 
