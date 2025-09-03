@@ -1,3 +1,6 @@
+
+The "use client"; directive at the top of a React component file is used to explicitly mark that file and its components as Client Components
+
 Appwrite is an open-source backend-as-a-service (BaaS) platform designed to simplify backend development for web, mobile, and Flutter applications by providing developers with a suite of ready-to-use APIs
 add
 
