@@ -68,6 +68,14 @@ react markdown editor
 
 //
 
+look up things on shadcn and magic ui to grab the open source
+stuff 
+
+ui.aceternity.com and magicui for open source additions
+after installing via CLI it will automatically be installed in src->components -> UI or magicui folder
+from which we can export to our stuff
+
+
 <>
 
 these things are typescript specific 
