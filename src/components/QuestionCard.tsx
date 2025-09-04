@@ -1,6 +1,6 @@
 "use client";
 
-interface Question {
+export interface Question {
   $id: string;
   $createdAt: string;
   title: string;

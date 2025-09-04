@@ -1,3 +1,12 @@
+{
+    children,
+    className,
+}: {
+    children: React.ReactNode;
+    className?: string;
+}
+
+
 
 The "use client"; directive at the top of a React component file is used to explicitly mark that file and its components as Client Components
 
