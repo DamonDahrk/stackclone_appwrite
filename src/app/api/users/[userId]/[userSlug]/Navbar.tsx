@@ -16,9 +16,9 @@ const Navbar = () => {
         {
             name: "Questions",
             href: `/users/${userId}/${userSlug}/questions`,
-            //additions
+            //additions //addiitions again
             //new
-            
+
         },
         {
             name: "Answers",
