@@ -28,6 +28,10 @@ const Navbar = () => {
             name: "Votes",
             href: `/users/${userId}/${userSlug}/votes`,
         },
+        {
+            name: "Logout",
+            href: `/logout`
+        }
     ];
 
     return (

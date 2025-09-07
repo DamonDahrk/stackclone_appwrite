@@ -2,7 +2,7 @@
 import React from 'react'
 import { ID, Models, Query } from "appwrite";
 import { useAuthStore } from '@/store/Auth';
-import { useRouter } from 'next/router';
+import { useRouter } from "next/navigation";
 import { db, voteCollection } from "@/models/name";
 import { databases } from "@/models/client/config";
 import { IconCaretUpFilled, IconCaretDownFilled } from "@tabler/icons-react";

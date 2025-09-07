@@ -119,29 +119,37 @@ const QuestionForm: React.FC<QuestionFormProps> = ({ question }) => {
     };
 
     //we made a function that will be called when we create the form.
-      const create = async () => {
-        if(!formData.attachment) throw new Error("Please upload an attachment!");
-      
-        const storageResponse = await storage.createFile(
-            questionAttachmentBucket,
-            ID.unique(),   
-            formData.attachment
-        );
-        //create a new file in the specified bucket with a unique ID and the provided file data.
+     const create = async () => {
+  // Optional upload
+  let attachmentId: string | undefined;
 
-        const response = await databases.createDocument(db , questionCollection, 
-            ID.unique(), {
-                title: formData.title,
-                content: formData.content,
-                authorId: formData.authorId,
-                tags: Array.from(formData.tags),
-                attachment: storageResponse.$id,
-                
-            });
+  if (formData.attachment) {
+    const file = await storage.createFile(
+      questionAttachmentBucket,
+      ID.unique(),
+      formData.attachment
+    );
+    attachmentId = file.$id;
+  }
 
-        loadConfetti();
-        return response;
-    };
+  // Create document without forcing attachment
+  const response = await databases.createDocument(
+    db,
+    questionCollection,
+    ID.unique(),
+    {
+      title: formData.title,
+      content: formData.content,
+      authorId: formData.authorId,
+      tags: Array.from(formData.tags),
+      ...(attachmentId ? { attachmentId } : {}),
+    }
+  );
+
+  loadConfetti();
+  return response;
+};
+//we made a function that will be called when we update the form.
 
       const update = async () => {
         if(!question) throw new Error("Question not found");

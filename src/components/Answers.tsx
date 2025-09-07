@@ -17,7 +17,7 @@ interface VoteList {
   total: number;
 }
 
-interface AnswerDocument extends Models.Document {
+export interface AnswerDocument extends Models.Document {
   content: string;
   authorId: string;
   author: {

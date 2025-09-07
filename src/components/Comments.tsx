@@ -1,3 +1,4 @@
+"use client";
 export interface CommentDocument extends Models.Document {
   content: string;
   authorId: string;
@@ -7,7 +8,7 @@ export interface CommentDocument extends Models.Document {
   author: { $id: string; name: string };
 }
 
-"use client";
+
 import { databases } from "@/models/client/config";
 import { commentCollection, db } from "@/models/name";
 import { useAuthStore } from "@/store/Auth";
