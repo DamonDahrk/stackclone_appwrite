@@ -2,19 +2,20 @@ import React from "react";
 import Navbar from "./Navbar";
 import UserHeader from "./UserHeader";
 
-// Define the params type manually
-type UserLayoutProps = {
-  children: React.ReactNode;
-  params: {
-    userId: string;
-    userSlug: string;
-  };
-};
+interface Params {
+  userId: string;
+  userSlug: string;
+}
 
-const Layout = ({ children, params }: UserLayoutProps) => {
+interface LayoutProps {
+  children: React.ReactNode;
+  params: Params;
+}
+
+const Layout = async ({ children, params }: LayoutProps) => {
   return (
     <div className="container mx-auto space-y-4 px-4 pb-20 pt-32">
-      {/* Pass userId from params */}
+      {/* Async Server Component */}
       <UserHeader userId={params.userId} />
 
       <div className="flex flex-col gap-4 sm:flex-row">
