@@ -23,7 +23,7 @@ const Pagination = ({
     const prev = () => {
   if (page <= "1") return;  // If already on the first page, do nothing.
   const pageNumber = parseInt(page); // Convert the page string to a number.
-  const newSearchParams = new URLSearchParams(searchParams as any ); // Create a new URLSearchParams object to manipulate query parameters.
+  const newSearchParams = new URLSearchParams(searchParams); // Create a new URLSearchParams object to manipulate query parameters.
   newSearchParams.set("page", `${pageNumber - 1}`); // Set the page parameter to the previous page number.
   router.push(`${pathname}?${newSearchParams}`); // Navigate to the new URL with the updated page parameter.
   //example: example.com/posts?page=3 

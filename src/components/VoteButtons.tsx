@@ -90,10 +90,17 @@ className?: string;
     // Update the votedDocument state with the new voted document from the server response.
 
 
-} catch (error:any) { window.alert(error?.message || "Something went wrong"); } 
+} catch (error:unknown) { 
+   if (error instanceof Error) 
+    { window.alert(error?.message) ; } 
+   else {
+    window.alert("Something went wrong");
+  } 
+
+    }
+}; 
 // If an error occurs during the fetch or processing, display an alert with the error message.
 
-    };
 
 
     const toggleDownvote = async () => {
@@ -124,10 +131,15 @@ className?: string;
     // Update the votedDocument state with the new voted document from the server response.
 
 
-} catch (error:any) { window.alert(error?.message || "Something went wrong"); } 
-// If an error occurs during the fetch or processing, display an alert with the error message.
+} catch (error:unknown) { 
+   if (error instanceof Error) 
+    { window.alert(error?.message) ; } 
+   else {
+    window.alert("Something went wrong");
+  } 
 
-    };
+    }
+}; 
     // Placeholder functions for handling upvote and downvote actions.
         
 
