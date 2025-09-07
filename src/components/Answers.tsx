@@ -7,7 +7,7 @@ import { useAuthStore } from "@/store/Auth";
 import { avatars, databases } from "@/models/client/config";
 import { answerCollection, db } from "@/models/name";
 import RTE, { MarkdownPreview } from "./RTE";
-import { CommentDocument } from "./Comments"; 
+import { EnrichedComment } from "./Comments"; 
 import Comments from "./Comments";
 import slugify from "@/utils/slugify";
 import Link from "next/link";
@@ -164,7 +164,7 @@ const Answers = ({
                             </div>
                         </div>
                         <Comments
-  comments={answer.comments as Models.DocumentList<CommentDocument>}
+  comments={answer.comments as Models.DocumentList<EnrichedComment>}
   className="mt-4"
   type="answer"
   typeId={answer.$id}

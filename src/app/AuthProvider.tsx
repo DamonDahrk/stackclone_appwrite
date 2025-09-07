@@ -7,7 +7,8 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   const { verifySession, hydrated } = useAuthStore();
 
   useEffect(() => {
-    if (!hydrated) {
+    const loggedOut = localStorage.getItem("loggedOut");
+    if (!hydrated && !loggedOut) {
       verifySession();
     }
   }, [hydrated, verifySession]);

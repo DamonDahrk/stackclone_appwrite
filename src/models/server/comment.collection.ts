@@ -22,6 +22,7 @@ databases.createStringAttribute(db, commentCollection, "typeId", 70, true),
 databases.createEnumAttribute(db, commentCollection, "type", ["answer", "question"] ,true),
 //comments can be on the question or answers
 databases.createStringAttribute(db, commentCollection, "authorId", 70, true),
+   databases.createStringAttribute(db, commentCollection, "authorName", 255, true), 
 
 ]);
 console.log("Comment Attributes created")

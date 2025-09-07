@@ -1,5 +1,5 @@
 import Answers, { AnswerDocument } from "@/components/Answers";
-import Comments, { CommentDocument } from "@/components/Comments";
+import Comments, { EnrichedComment } from "@/components/Comments";
 import { MarkdownPreview } from "@/components/RTE";
 import VoteButtons from "@/components/VoteButtons";
 import { Particles } from "@/components/magicui/particles";
@@ -50,7 +50,7 @@ const Page = async ({
         Query.equal("type", "question"),
         Query.equal("voteStatus", "downvoted"),
       ]),
-      databases.listDocuments<CommentDocument>(db, commentCollection, [
+      databases.listDocuments<EnrichedComment>(db, commentCollection, [
         Query.equal("type", "question"),
         Query.equal("typeId", documentId),
         Query.orderDesc("$createdAt"),
@@ -61,7 +61,7 @@ const Page = async ({
   const author = await users.get<UserPrefs>(question.authorId);
 
   // Enhance comments with author info (preserve DocumentList structure)
-  const comments: Models.DocumentList<CommentDocument> = {
+  const comments: Models.DocumentList<EnrichedComment> = {
     ...commentsRes,
     documents: await Promise.all(
       commentsRes.documents.map(async (comment) => {
@@ -86,7 +86,7 @@ const Page = async ({
         const [aAuthor, answerCommentsRes, upvotes, downvotes] =
           await Promise.all([
             users.get<UserPrefs>(answer.authorId),
-            databases.listDocuments<CommentDocument>(db, commentCollection, [
+            databases.listDocuments<EnrichedComment>(db, commentCollection, [
               Query.equal("typeId", answer.$id),
               Query.equal("type", "answer"),
               Query.orderDesc("$createdAt"),
@@ -103,7 +103,7 @@ const Page = async ({
             ]),
           ]);
 
-        const answerComments: Models.DocumentList<CommentDocument> = {
+        const answerComments: Models.DocumentList<EnrichedComment> = {
           ...answerCommentsRes,
           documents: await Promise.all(
             answerCommentsRes.documents.map(async (c) => {
