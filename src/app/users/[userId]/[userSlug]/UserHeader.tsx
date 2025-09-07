@@ -9,7 +9,7 @@ interface UserHeaderProps {
   userId: string;
 }
 
-// Async server component can fetch data
+// Async server component
 const UserHeader = async ({ userId }: UserHeaderProps) => {
   const user = await users.get(userId);
 
