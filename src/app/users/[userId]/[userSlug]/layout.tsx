@@ -2,7 +2,16 @@ import React from "react";
 import Navbar from "./Navbar";
 import UserHeader from "./UserHeader";
 
-const Layout = ({ children, params }: { children: React.ReactNode; params: { userId: string; userSlug: string } }) => {
+// Define the params type manually
+type UserLayoutProps = {
+  children: React.ReactNode;
+  params: {
+    userId: string;
+    userSlug: string;
+  };
+};
+
+const Layout = ({ children, params }: UserLayoutProps) => {
   return (
     <div className="container mx-auto space-y-4 px-4 pb-20 pt-32">
       {/* Pass userId from params */}
