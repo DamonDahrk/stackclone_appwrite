@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, Transition } from "motion/react";
 import React, {
   ComponentPropsWithoutRef,
   useEffect,
@@ -9,12 +9,13 @@ import React, {
   useState,
 } from "react";
 
+// Single list item with proper Framer Motion typing
 export function AnimatedListItem({ children }: { children: React.ReactNode }) {
   const animations = {
     initial: { scale: 0, opacity: 0 },
     animate: { scale: 1, opacity: 1, originY: 0 },
     exit: { scale: 0, opacity: 0 },
-    transition: { type: "spring", stiffness: 350, damping: 40 },
+    transition: { type: "spring" as const, stiffness: 350, damping: 40 } as Transition,
   };
 
   return (
@@ -24,19 +25,20 @@ export function AnimatedListItem({ children }: { children: React.ReactNode }) {
   );
 }
 
+// Props for the list
 export interface AnimatedListProps extends ComponentPropsWithoutRef<"div"> {
   children: React.ReactNode;
   delay?: number;
 }
 
+// Main AnimatedList component
 export const AnimatedList = React.memo(
   ({ children, className, delay = 1000, ...props }: AnimatedListProps) => {
     const [index, setIndex] = useState(0);
-    const childrenArray = useMemo(
-      () => React.Children.toArray(children),
-      [children],
-    );
 
+    const childrenArray = useMemo(() => React.Children.toArray(children), [children]);
+
+    // Increment index to reveal items one by one
     useEffect(() => {
       if (index < childrenArray.length - 1) {
         const timeout = setTimeout(() => {
@@ -47,26 +49,25 @@ export const AnimatedList = React.memo(
       }
     }, [index, delay, childrenArray.length]);
 
+    // Only show the items up to the current index
     const itemsToShow = useMemo(() => {
-      const result = childrenArray.slice(0, index + 1).reverse();
-      return result;
+      return childrenArray.slice(0, index + 1).reverse();
     }, [index, childrenArray]);
 
     return (
-      <div
-        className={cn(`flex flex-col items-center gap-4`, className)}
-        {...props}
-      >
+      <div className={cn("flex flex-col items-center gap-4", className)} {...props}>
         <AnimatePresence>
           {itemsToShow.map((item) => (
-            <AnimatedListItem key={(item as React.ReactElement).key}>
+            <AnimatedListItem
+              key={(item as React.ReactElement).key ?? Math.random()}
+            >
               {item}
             </AnimatedListItem>
           ))}
         </AnimatePresence>
       </div>
     );
-  },
+  }
 );
 
 AnimatedList.displayName = "AnimatedList";
