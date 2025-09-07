@@ -10,13 +10,17 @@
 // Utility functions for styling (cn) and URL generation (slugify)
 
 
-interface QuestionDocument extends Models.Document {
+export interface QuestionDocument extends Models.Document {
   title: string;
   content: string;
   tags: string[];
   authorId: string;
   attachmentId?: string;
 };
+
+interface QuestionFormProps {
+  question?: QuestionDocument;
+}
 
 import { IconX } from "@tabler/icons-react";
 import React from 'react'
@@ -60,7 +64,10 @@ const LabelInputContainer = ({
     );
 };
 
-const QuestionForm = () => ({ question }: { question?: QuestionDocument  }) => {
+//brb
+
+
+const QuestionForm: React.FC<QuestionFormProps> = ({ question }) => {
     const { user } = useAuthStore(); //getting user from zustand store
     const router = useRouter(); //for programmatic navigation
     //tag is a state variable that holds the current value of the tag.
@@ -191,12 +198,23 @@ const QuestionForm = () => ({ question }: { question?: QuestionDocument  }) => {
 
         e.preventDefault(); //prevent default form submission behavior
 
-         if (!formData.title || !formData.content || !formData.authorId) {
+         if (!formData.title && !formData.content && !formData.authorId) {
         //  Validation check for required fields
       setError(() => "Please fill out all fields");
         // - Error message will be displayed to user in the UI
         return;
-    }   setLoading(() => true); // Set loading state to true to indicate submission in progress
+    }   
+
+
+if (formData.title && formData.content && !formData.authorId) {
+        //  Validation check for required fields
+      setError(() => "content there and title there");
+        // - Error message will be displayed to user in the UI
+        return;
+}    
+    
+    
+        setLoading(() => true); // Set loading state to true to indicate submission in progress
         setError(() => ""); // Clear any previous error messages
 
         try{
