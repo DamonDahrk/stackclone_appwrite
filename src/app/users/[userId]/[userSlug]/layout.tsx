@@ -2,19 +2,11 @@ import React from "react";
 import Navbar from "./Navbar";
 import UserHeader from "./UserHeader";
 
-interface LayoutProps {
-  children: React.ReactNode;
-  params: {
-    userId: string;
-    userSlug: string;
-  };
-}
-
-// Synchronous layout
-const Layout = ({ children, params }: LayoutProps) => {
+// No manual types for params
+const Layout = ({ children, params }: any) => {
   return (
     <div className="container mx-auto space-y-4 px-4 pb-20 pt-32">
-      {/* Async server component */}
+      {/* Async server component fetches user */}
       <UserHeader userId={params.userId} />
 
       <div className="flex flex-col gap-4 sm:flex-row">

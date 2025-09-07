@@ -5,12 +5,7 @@ import { IconClockFilled, IconUserFilled } from "@tabler/icons-react";
 import convertDateToRelativeTime from "@/utils/relativeTime";
 import EditButton from "./EditButton";
 
-interface UserHeaderProps {
-  userId: string;
-}
-
-// Async server component
-const UserHeader = async ({ userId }: UserHeaderProps) => {
+const UserHeader = async ({ userId }: { userId: string }) => {
   const user = await users.get(userId);
 
   return (
